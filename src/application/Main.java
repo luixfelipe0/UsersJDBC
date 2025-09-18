@@ -10,5 +10,7 @@ public class Main {
 
         System.out.println(userDao.findAll());
 
+        System.out.println(userDao.findById(5));
+        System.out.println(userDao.findByUsername("João Pereira"));
     }
 }

@@ -33,11 +33,68 @@ public class UserDaoImplementation implements UserDao {
 
     @Override
     public User findById(Integer id) {
+
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = conn.prepareStatement(
+                    "SELECT * FROM users " +
+                            "WHERE id = ?"
+            );
+
+            st.setInt(1, id);
+
+            rs = st.executeQuery();
+
+            if (rs.next()) {
+                Integer userId = rs.getInt("id");
+                String username = rs.getString("username");
+                String email = rs.getString("email");
+                Date birthDate = rs.getDate("birthDate");
+                return new User(userId, username, email, birthDate);
+            }
+        }
+        catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DBConfig.closeStatement(st);
+            DBConfig.closeResultSet(rs);
+        }
         return null;
     }
 
     @Override
     public User findByUsername(String username) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = conn.prepareStatement(
+                    "SELECT * FROM users " +
+                            "WHERE username = ?"
+            );
+
+            st.setString(1, username);
+
+            rs = st.executeQuery();
+
+            if (rs.next()) {
+                Integer userId = rs.getInt("id");
+                String name = rs.getString("username");
+                String email = rs.getString("email");
+                Date birthDate = rs.getDate("birthDate");
+                return new User(userId, name, email, birthDate);
+            }
+        }
+        catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DBConfig.closeStatement(st);
+            DBConfig.closeResultSet(rs);
+        }
         return null;
     }
 
