@@ -17,7 +17,9 @@ public class Main {
         System.out.println(userDao.findById(5));
         System.out.println(userDao.findByUsername("João Pereira"));
 
-        userDao.insert(new User(null, "luix", "luix.felipe@email.com", "adminadmin", new Date()));
+//        userDao.insert(new User(null, "luix", "luix.felipe1@email.com", "adminadmin", new Date()));
+
+//        userDao.update(5, "marilove", "mari.love@email.com", null);
 
     }
 }
