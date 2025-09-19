@@ -3,8 +3,6 @@ package application;
 import model.dao.DaoFactory;
 import model.dao.UserDao;
 import model.entities.User;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Main {
